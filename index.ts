@@ -44,7 +44,7 @@ app.get(`/resourcepacks/java/:filename{${FILENAME_PARAM}}`, async (c) => {
     assertNotFound(err);
   }
 
-  const ids = filename.match(FILENAME_REGEX)?.[1]?.split("");
+  const ids = filename.match(FILENAME_REGEX)?.[1]?.split("").reverse();
 
   if (ids === undefined) {
     throw new Error(`Failed to parse filename`);
@@ -58,11 +58,11 @@ app.get(`/resourcepacks/java/:filename{${FILENAME_PARAM}}`, async (c) => {
 
   merge(`addons/raw/base`, "addons/temp");
 
-  let i = 1;
+  let i = ids.length;
 
   for (const id of ids) {
     try {
-      merge(`addons/raw/${i++}/${id}`, "addons/temp");
+      merge(`addons/raw/${i--}/${id}`, "addons/temp");
     } catch (_err) {
       continue;
     }
