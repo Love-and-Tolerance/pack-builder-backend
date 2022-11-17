@@ -78,7 +78,20 @@ for (const addon of ASSETS.repos.addons) {
     console.info(`Processing variant "${variant.name}" ...`);
 
     const dir = `addons/raw/${addon.id_pos}/${variant.id}`;
-    await initRepo(dir, variant.url, variant.branch ?? "HEAD");
+
+    let branches = ["HEAD"];
+
+    if (typeof variant.branch === "string") {
+      branches = [variant.branch];
+    } else if (variant.branch !== undefined) {
+      for (const condition of variant.branch) {
+        branches.push(condition.value);
+      }
+    }
+
+    for (const branch of branches) {
+      await initRepo(`${dir}/${branch}`, variant.url, branch);
+    }
   }
 }
 

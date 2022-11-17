@@ -16,6 +16,7 @@ export const ASSETS: Assets<JavaAddon> = {
       {
         "name": "Seasonal",
         "id_pos": 1,
+        "apply_order": 6,
         "default": "x",
         "variants": [
           {
@@ -42,6 +43,7 @@ export const ASSETS: Assets<JavaAddon> = {
       {
         "name": "Music",
         "id_pos": 2,
+        "apply_order": 5,
         "default": "a",
         "variants": [
           { "name": "None", "id": "x" },
@@ -63,26 +65,29 @@ export const ASSETS: Assets<JavaAddon> = {
       {
         "name": "3D models",
         "id_pos": 3,
+        "apply_order": 2,
         "default": "s",
         "variants": [
           { "name": "None", "id": "x" },
           {
             "name": "Simple",
             "id": "s",
-            "branch": "simple",
             "url": "https://github.com/Love-and-Tolerance/3d-Models-Addon",
+            "branch": "simple",
           },
           {
             "name": "Complex",
             "id": "c",
-            "branch": "complex",
             "url": "https://github.com/Love-and-Tolerance/3d-Models-Addon",
+            "branch": "complex",
+            "enable_trigger": "COMPLEX_MODELS",
           },
         ],
       },
       {
         "name": "Holiday",
         "id_pos": 4,
+        "apply_order": 4,
         "default": "x",
         "variants": [
           { "name": "None", "id": "x" },
@@ -103,6 +108,7 @@ export const ASSETS: Assets<JavaAddon> = {
       {
         "name": "Classic",
         "id_pos": 5,
+        "apply_order": 3,
         "default": "x",
         "variants": [
           { "name": "None", "id": "x" },
@@ -111,12 +117,16 @@ export const ASSETS: Assets<JavaAddon> = {
             "id": "c",
             "url":
               "https://github.com/Love-and-Tolerance/Classic-Textures-Addon",
+            "branch": [
+              { trigger: "COMPLEX_MODELS", value: "complex-models" },
+            ],
           },
         ],
       },
       {
         "name": "Bronydog",
         "id_pos": 6,
+        "apply_order": 1,
         "default": "x",
         "variants": [
           { "name": "None", "id": "x" },
