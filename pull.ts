@@ -45,6 +45,7 @@ async function initRepo(
       `Repo is already initialized. Pulling changes from branch "${branch}" ...\n`,
     );
 
+    await run(dir, `git reset --hard ${branch}`);
     await run(dir, `git pull origin ${branch}`);
   } else {
     console.info(`No repo. Cloning with branch "${branch}" ...\n`);
