@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { logger } from "hono/middleware";
 import { serve } from "http/server";
 import { ASSETS as BEDROCK_ASSETS } from "./data/assets/bedrock.ts";
 import { ASSETS as JAVA_ASSETS } from "./data/assets/java.ts";
@@ -25,6 +26,8 @@ const FILENAME_REGEX = new RegExp(
 );
 
 const app = new Hono();
+
+app.use("*", logger());
 
 app.get("/resourcepacks/assets/bedrock.json", (c) => {
   return c.json(BEDROCK_ASSETS, 200, { "Access-Control-Allow-Origin": "*" });
